@@ -17,13 +17,13 @@ public class MyKeyboardListener extends KeyboardListener{
 		super();
 		myContent = (MyContent) this.content;
 	}
-
+		int shipDeltaMove = 10;
 	@Override
 	public void directionalKeyPressed(Direction direction) {
 		switch (direction) {
 		  case UP:
 			  myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.UP);
-			  myContent.myCharacter().moveLocation(0,-10);
+			  myContent.myCharacter().moveLocation(0,-shipDeltaMove);
 			 if ((myContent.myCharacter().getLocation().y)<00) {
 				Game.UI().canvas().moveToLocation("space ship",500,700);
 				myContent.myCharacter().setLocation(new Point(500,700));
@@ -41,21 +41,21 @@ public class MyKeyboardListener extends KeyboardListener{
 			  myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DOWN);
       			if ((myContent.myCharacter().getLocation().y)<700) {
   
-			  myContent.myCharacter().moveLocation(0,10);
+			  myContent.myCharacter().moveLocation(0,shipDeltaMove);
 				}
 			  break;
 			case LEFT:
 			  myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.LEFT);
 			   if ((myContent.myCharacter().getLocation().x)>20) {
 
-			  myContent.myCharacter().moveLocation(-10,0);
+			  myContent.myCharacter().moveLocation(-shipDeltaMove,0);
 				}
 			break;
 			case RIGHT:
 			  myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.RIGHT);
 			  	if ((myContent.myCharacter().getLocation().x)<954) {
 
-			  myContent.myCharacter().moveLocation(10,0);
+			  myContent.myCharacter().moveLocation(shipDeltaMove,0);
 				}
 			break;
 		}

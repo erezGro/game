@@ -6,7 +6,7 @@ import game.ShapeListener;
 
 
 
-public class TimeFreezeStar implements ShapeListener{
+public class FreezeStar implements ShapeListener{
 	public enum Direction{
 		RIGHT (0,-50),
 		LEFT(-1,50),
@@ -27,7 +27,7 @@ public class TimeFreezeStar implements ShapeListener{
 	}
 	
 
-	private String imageID = "Time Freeze Star";
+	private String imageID = "Freeze Star";
 	private int rotation = 0;	// In degrees
 	private Point location;
 	private Direction directionPolicy = Direction.RIGHT;
@@ -52,7 +52,7 @@ public class TimeFreezeStar implements ShapeListener{
 	
 	public String getImageName() {
 //		return "resources/asteroid_small.png";
-        return "resources/asteroid_small.png";
+        return "resources/freezer.jpg";
 
 	}
 	

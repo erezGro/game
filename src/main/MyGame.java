@@ -10,6 +10,7 @@ import buttons.ChangeButton;
 import buttons.MusicButton;
 import my_game.MyCharacter;
 import my_game.TimeStar;
+import my_game.FreezeStar;
 
 import my_game.Point;
 import shapes.Circle;
@@ -69,7 +70,14 @@ public class MyGame extends Game {
 		Image imageTs = new Image(timeStar.getImageID(), timeStar.getImageName(), 55, 52, 1100, 1000);
 		canvas.addShape(imageTs);
 		image.setzOrder(3);
-
+		
+		FreezeStar freezeStar = content.freezeStar();
+		freezeStar = new FreezeStar();
+		//Freeze Star init is out of the canvas bonds
+		Image imageFs = new Image(freezeStar.getImageID(), freezeStar.getImageName(), 55, 52, 1100, 1000);
+		canvas.addShape(imageFs);
+		image.setzOrder(3);
+		
 		Point[] points = {
 
 				new Point(400, 400),
