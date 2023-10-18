@@ -51,7 +51,7 @@ public class MyCharacter implements ShapeListener{
 	}
 	
 	public String getImageName() {
-		return "resources/shuttle10.jpg";
+		return "resources/shuttleC.jpg";
 	}
 	
 	

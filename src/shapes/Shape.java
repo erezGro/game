@@ -15,7 +15,7 @@ public abstract class Shape {
 
 	private final String id;
 	private STATUS status;
-	private Color color = Color.red;
+	private Color color = Color.white;
 	private int weight = 1;
 	private int zOrder = 1;
 	private boolean isDraggable = true;
