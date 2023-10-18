@@ -271,7 +271,7 @@ public class MyPeriodicLoop extends PeriodicLoop {
 			if ((InitgameDuration-(int)elapsedTime)>6){
 				astroidSpeed=((InitgameDuration-(int)elapsedTime)*2);
 			}
-
+freezeFactor=1;
 			if ((moveOnceIn10miliseconds >= astroidSpeed) && (freezeFactor == 0)) {
 
 				moveOnceIn10miliseconds = 0;

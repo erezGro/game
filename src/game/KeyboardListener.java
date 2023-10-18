@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 
 public class KeyboardListener {
 	public enum Direction {
-		RIGHT, LEFT, UP, DOWN;
+		RIGHT, LEFT, UP, DOWN, UR, UL, DR, DL, WUP, XDOWN, ALEFT, DRIGHT;
 	}
 
 	public KeyListener keyListener = new KeyListener() {
@@ -35,6 +35,30 @@ public class KeyboardListener {
 				break;
 			case KeyEvent.VK_DOWN:
 				directionalKeyPressed(Direction.DOWN);
+				break;
+			case KeyEvent.VK_D:
+				directionalKeyPressed(Direction.RIGHT);
+				break;
+			case KeyEvent.VK_A:
+				directionalKeyPressed(Direction.LEFT);
+				break;
+			case KeyEvent.VK_W:
+				directionalKeyPressed(Direction.UP);
+				break;
+			case KeyEvent.VK_X:
+				directionalKeyPressed(Direction.DOWN);
+				break;
+			case KeyEvent.VK_Q:
+				directionalKeyPressed(Direction.UL);
+				break;
+			case KeyEvent.VK_E:
+				directionalKeyPressed(Direction.UR);
+				break;
+			case KeyEvent.VK_Z:
+				directionalKeyPressed(Direction.DL);
+				break;
+			case KeyEvent.VK_C:
+				directionalKeyPressed(Direction.DR);
 				break;
 			case KeyEvent.VK_ENTER:
 				enterKeyPressed();

@@ -11,8 +11,16 @@ public class MyCharacter implements ShapeListener{
 		RIGHT (0,-50),
 		LEFT(-1,50),
 		UP (0,-50),
-		DOWN(0,50);
-		
+		DOWN(0,50), 
+		UR (0,-50),
+		DR (0,50),
+		UL (0,-50),
+		DL (0,50),
+		DRIGHT (0,-50),
+		ALEFT(-1,50),
+		WUP (0,-50),
+		XDOWN(0,50), ; 
+
 		private final int xVec, yVec;
 		private Direction(int xVec, int yVec) {
 			this.xVec = xVec;
