@@ -28,6 +28,8 @@ public class MyPeriodicLoop extends PeriodicLoop {
 	int maxY = 600;
 	int randX = 500;
 	int randY = 500;
+	int randXfreeze = 700;
+	int randYfreeze = 300;
 	int tStarX;
 	int tStarY;
 	String[] pids = { "p0", "p1", "p2", "p3", "p4", "p5", "p6" };
@@ -79,6 +81,10 @@ public class MyPeriodicLoop extends PeriodicLoop {
 			// System.out.println("FIRST TIME SHOWING TIMER BONUS");
 			randX = (int) (Math.random() * ((maxX - minX) + 1)) + minX;
 			randY = (int) (Math.random() * ((maxY - minY) + 1)) + minY;
+			
+			randXfreeze = (int) (Math.random() * ((maxX - minX) + 1)) + minX;
+			randYfreeze = (int) (Math.random() * ((maxY - minY) + 1)) + minY;
+
 			timeStarShow = true;
 			timerFirstTimeShow = false;
 			tStarX = randX;
@@ -94,8 +100,8 @@ public class MyPeriodicLoop extends PeriodicLoop {
 
 		if (freezeStarStatus) {
 
-			fStarX = 700;// randX;//-20*(int)CurrentTimer;
-			fStarY = 300;// randY;//-20*(int)CurrentTimer;
+			fStarX = randXfreeze;// randX;//-20*(int)CurrentTimer;
+			fStarY = randYfreeze;// randY;//-20*(int)CurrentTimer;
 
 			Game.UI().canvas().moveToLocation("Freeze Star", fStarX, fStarY);
 
@@ -141,10 +147,10 @@ public class MyPeriodicLoop extends PeriodicLoop {
 			showClock = false;
 			gameDuration = gameDuration + 10;
 
-			fStarX = 1100;
-			fStarY = 1000;
+			tStarX = 1100;
+			tStarY = 1000;
 
-			Game.UI().canvas().moveToLocation("Time Star", fStarX, fStarY);
+			Game.UI().canvas().moveToLocation("Time Star", tStarX, tStarY);
 
 		}
 
@@ -152,6 +158,10 @@ public class MyPeriodicLoop extends PeriodicLoop {
 		if ((shipX >= fStarX - 40) && (shipY >= fStarY - 40) && (shipX <= fStarX + 40) && (shipY <= fStarY + 40)
 				&& (shipX < 950) && (shipX > 60) && (freezeStarStatus)) {
 			freezeStarStatus = false;
+			randXfreeze = (int) (Math.random() * ((maxX - minX) + 1)) + minX;
+			randYfreeze = (int) (Math.random() * ((maxY - minY) + 1)) + minY;
+			tStarX = randX; // 500;//randX;//-20*(int)CurrentTimer;
+			tStarY = randY; // 500;//randY;//-20*(int)CurrentTimer;
 			timeStarShow = true;
 
 			AudioPlayer.playSound("resources/audio/timer.wav");
