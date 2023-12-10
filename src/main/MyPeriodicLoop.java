@@ -1,27 +1,48 @@
 package main;
 
 import java.awt.Color;
+// import java.awt.Image;
 
 import game.AudioPlayer;
 import game.Game;
 import game.PeriodicLoop;
 import shapes.Circle;
+import shapes.FilledShape;
 import shapes.Shape;
 import shapes.Text;
 import my_game.MyCharacter;
 import my_game.Point;
-import my_game.TimeStar;
+// import my_game.TimeStar;
+// import my_game.FreezeStar;
 
 public class MyPeriodicLoop extends PeriodicLoop {
 
 	int moveOnceIn10miliseconds = 0;
-	int gameDuration = 30;
+	int gameDuration = 30;	
+	int InitgameDuration = 30;
+
 	int astroidSpeed = 200;
+	int minX = 200;
+	int maxX = 800;
+	int minY = 200;
+	int maxY = 600;
+	int randX = 500;
+	int randY = 500;
+	int randXfreeze = 700;
+	int randYfreeze = 300;
+	int tStarX;
+	int tStarY;
+	String[] pids = { "p0", "p1", "p2", "p3", "p4", "p5", "p6" };
+
 	boolean playBoom = false;
-
-		boolean showClock = true;
-
+	boolean timeStarShow = false;
+	boolean freezeStarStatus = false;
+	boolean jitterTimeStarStatus = false;
+	boolean jitterFreezeStarStatus = false;
+	boolean showClock = true;
+	boolean setLocationFlag = true;
 	private MyContent content;
+	private boolean timerFirstTimeShow=true;
 
 	public void setContent(MyContent content) {
 		this.content = content;
@@ -35,31 +56,63 @@ public class MyPeriodicLoop extends PeriodicLoop {
 
 	}
 
-	private void redrawCharacter() {
 
+	private void redrawCharacter() {
+		// randX = (int) (Math.random() * ((maxX - minX) + 1)) + minX;
+		// randY = (int) (Math.random() * ((maxY - minY) + 1)) + minY;
 		MyCharacter character = content.myCharacter();
 
 		// TIMER UPDATING ON UI
 		long elapsedTime = System.currentTimeMillis() / 1000 - Game.gameStartTime;
 		long CurrentTimer = (gameDuration - elapsedTime);
 		Text textForTimer = new Text("textForTimer", "Timer : " + CurrentTimer + " [sec]  ", 700, 100);
-		
-		int randTimeMax = 15;
-		int randTimeMin = 5;
+		int freezeFactor = 0;
 
-		int randomIntTime = (int) (Math.random() * ((randTimeMax - randTimeMin) + 1)) + randTimeMin;
-		int tStarX = 0;
-		int tStarY = 0;
-		if ((CurrentTimer < randomIntTime)&&(showClock)) {
-			tStarX = 500;//-20*(int)CurrentTimer;
-			tStarY = 500;//-20*(int)CurrentTimer;
+		int fStarX = 700;
+		int fStarY = 300;
+		if (setLocationFlag) {
+			setLocationFlag = false;
 
-		//	TimeStar timeStar = content.timeStar();
-			Game.UI().canvas().moveToLocation("Time Star",tStarX,tStarY);
+			Game.UI().canvas().moveToLocation("space ship", 500, 600);
+			content.myCharacter().setLocation(new Point(500, 600));
+		}
 
-		} 
-		if (CurrentTimer < 10) {
-			textForTimer.setColor(Color.red);
+		if (timerFirstTimeShow && (CurrentTimer <= 28)) {// &&(!freezeStarStatus)) {
+			// System.out.println("FIRST TIME SHOWING TIMER BONUS");
+			randX = (int) (Math.random() * ((maxX - minX) + 1)) + minX;
+			randY = (int) (Math.random() * ((maxY - minY) + 1)) + minY;
+			
+			randXfreeze = (int) (Math.random() * ((maxX - minX) + 1)) + minX;
+			randYfreeze = (int) (Math.random() * ((maxY - minY) + 1)) + minY;
+
+			timeStarShow = true;
+			timerFirstTimeShow = false;
+			tStarX = randX;
+			tStarY = randY;
+			// System.out.println("X AND Y:"+randX+" : "+randY);
+
+		}
+
+		if (timeStarShow) {
+			Game.UI().canvas().moveToLocation("Time Star", tStarX, tStarY);
+			//timeStarShow = false;
+		}
+
+		if (freezeStarStatus) {
+
+			fStarX = randXfreeze;// randX;//-20*(int)CurrentTimer;
+			fStarY = randYfreeze;// randY;//-20*(int)CurrentTimer;
+
+			Game.UI().canvas().moveToLocation("Freeze Star", fStarX, fStarY);
+
+		}
+
+		if (CurrentTimer <= 10) {
+			if ((int) CurrentTimer % 2 == 0) {
+				textForTimer.setColor(Color.red);
+			} else {
+				textForTimer.setColor(Color.yellow);
+			}
 		} else {
 			textForTimer.setColor(Color.white);
 		}
@@ -70,73 +123,114 @@ public class MyPeriodicLoop extends PeriodicLoop {
 			Game.endGame();
 		}
 
-//			content.timeStar().setLocation(new Point(100, 100));
-//			content.timeStar().moveLocation(-50,50);
-		// int tStarX = content.timeStar().getLocation().x;
-		// int tStarY = content.timeStar().getLocation().y;
-		int tStarX2 = tStarX - 50;
-		int tStarY2 = tStarY - 50;
-
 		int shipX = content.myCharacter().getLocation().x;
 		int shipY = content.myCharacter().getLocation().y;
-		// System.out.println("key character = '" + shipX + "'" + " pressed.");
-		// System.out.println("key character = '" + shipY + "'" + " pressed.");
 
 		int shipX2 = shipX - 5;
 		int shipY2 = shipY - 5;
 
-		// if spaceship gets the Timer Bonus:
-		if ((shipX >= tStarX) && (shipY >= tStarY-20)&& (shipX <= tStarX+60) && (shipY <= tStarY+60) && (shipX < 950) && (shipX > 60)) {
-				//Game.audioPlayer();
-				//Game.audioPlayer();
-				AudioPlayer.playSound("resources/audio/timer.wav");
-//							AudioPlayer.playSound("resources/clock.wav");
 
-					playBoom = false;
-				//AudioPlayer.playSound("resources/clock.wav");
-				showClock = false;
-				gameDuration=gameDuration+10;
-				Game.UI().canvas().moveToLocation("Time Star",1100,1000);
+		if ((shipX >= tStarX - 40) && (shipY >= tStarY - 40) && (shipX <= tStarX + 40) && (shipY <= tStarY + 40)
+				&& (shipX < 950) && (shipX > 60) && (timeStarShow)) {
+			// System.out.println("BOOM WITH TIMER");
+
+			timeStarShow = false;
+			randX = (int) (Math.random() * ((maxX - minX) + 1)) + minX;
+			randY = (int) (Math.random() * ((maxY - minY) + 1)) + minY;
+			tStarX = randX; // 500;//randX;//-20*(int)CurrentTimer;
+			tStarY = randY; // 500;//randY;//-20*(int)CurrentTimer;
+			freezeStarStatus = true;
+
+			AudioPlayer.playSound("resources/audio/timer.wav");
+
+			playBoom = false;
+			showClock = false;
+			gameDuration = gameDuration + 10;
+
+			tStarX = 1100;
+			tStarY = 1000;
+
+			Game.UI().canvas().moveToLocation("Time Star", tStarX, tStarY);
 
 		}
-		int minX = 20;
-		int maxX = 500;
-		int minY = 0;
-		int maxY = 700;
+
+		// if spaceship gets the Freeze Bonus:
+		if ((shipX >= fStarX - 40) && (shipY >= fStarY - 40) && (shipX <= fStarX + 40) && (shipY <= fStarY + 40)
+				&& (shipX < 950) && (shipX > 60) && (freezeStarStatus)) {
+			freezeStarStatus = false;
+			randXfreeze = (int) (Math.random() * ((maxX - minX) + 1)) + minX;
+			randYfreeze = (int) (Math.random() * ((maxY - minY) + 1)) + minY;
+			tStarX = randX; // 500;//randX;//-20*(int)CurrentTimer;
+			tStarY = randY; // 500;//randY;//-20*(int)CurrentTimer;
+			timeStarShow = true;
+
+			AudioPlayer.playSound("resources/audio/timer.wav");
+
+			playBoom = false;
+			fStarX = 1100;
+			fStarY = 1000;
+
+			Game.UI().canvas().moveToLocation("Freeze Star", fStarX, fStarY);
+
+			showClock = false;
+			// freezeFactor=1;
+
+			// while freeze - Astroids are BLACK:
+			for (int i = 0; i <  pids.length; i++) {
+			Shape currentP = Game.UI().canvas().getShape(pids[i]);
+			((FilledShape) currentP).setFillColor(Color.BLACK);
+			Game.UI().canvas().addShape(currentP);
+		}
+
+			try {
+				Thread.sleep(5000);
+				gameDuration = gameDuration + 5;
+				CurrentTimer = CurrentTimer + 5;
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+			;
+
+		}
+
+		int minAstX = 20;
+		int maxAstX = 500;
+		int minAstY = 0;
+		int maxAstY = 700;
 		int minR = 10;
 		int maxR = 40;
 
+		// for each astroid we do the following:
+		// 		get location
+		// 		check location
+		//		if arrived to the edge: set new randomized location
+		// 		if Boom with the spaceship - move spaceship back down to a randomized X
+		// 		position
 
-		// for each astroid we need:
-		// get location
-		// check location
-		// if arrived to the edge: set new randomized location
-		// if Boom with the spaceship - move spaceship back down to a randomized X position
-
-		String[] pids = { "p0", "p1", "p2", "p3", "p4", "p5", "p6" };
-		for (int i = 0; i < 6; i++) {// pids.length; i++) {
+		for (int i = 0; i <  pids.length; i++) {
 			playBoom = false;
 
 			String currentPid = pids[i];
 			Shape currentP = Game.UI().canvas().getShape(pids[i]);
 
 			int radius = ((Circle) currentP).getRadius();
-
 			int px1 = ((Circle) currentP).x1CircPosition();
 			int px2 = ((Circle) currentP).x2CircPosition();
 			int py1 = ((Circle) currentP).y1CircPosition();
 			int py2 = ((Circle) currentP).y2CircPosition();
 
 			// check: do we have a boom? if we do - we move the ship back down!
+			Color currentColor = ((Circle) currentP).getFillColor();
 
-			if ((shipX >= px1 - 3 * radius) && (shipX2 <= px1 + radius) && (shipY >= py1 - 2 * radius)
+			if ((currentColor != Color.RED) && (shipX >= px1 - 3 * radius) && (shipX2 <= px1 + radius)
+					&& (shipY >= py1 - 2 * radius)
 					&& (shipY2 <= py2 + radius)) {
 
-				int randomIntX = (int) (Math.random() * ((maxX - minX) + 1)) + minX;
+				int randomIntX = (int) (Math.random() * ((maxAstX - minAstX) + 1)) + minAstX;
 
-				Game.UI().canvas().moveToLocation("space ship", randomIntX, 700);
-				content.myCharacter().setLocation(new Point(randomIntX, 700));
-				playBoom=true;
+				Game.UI().canvas().moveToLocation("space ship", randomIntX, 600);
+				content.myCharacter().setLocation(new Point(randomIntX, 600));
+				playBoom = true;
 				// Game.UI().canvas().moveToLocation("space ship", randomIntX, 700);
 				// content.myCharacter().setLocation(new Point(randomIntX, 700));
 
@@ -148,10 +242,9 @@ public class MyPeriodicLoop extends PeriodicLoop {
 				p.setIsFilled(true);
 				p.setzOrder(3);
 				Game.UI().canvas().addShape(p);
-				
 
-				if (playBoom==true) {
-					//Game.audioPlayer();
+				if (playBoom == true) {
+					// Game.audioPlayer();
 					AudioPlayer.playSound("resources/audio/boom.wav");
 					playBoom = false;
 				}
@@ -161,8 +254,8 @@ public class MyPeriodicLoop extends PeriodicLoop {
 			// if astroid is at the edge - we recreate it
 			if ((px1 <= 20) || (px2 >= 994) || (py1 >= 1000) || (py2 <= 0)) {
 
-				int randomIntX = (int) (Math.random() * ((maxX - minX) + 1)) + minX;
-				int randomIntY = (int) (Math.random() * ((maxY - minY) + 1)) + minY;
+				int randomIntX = (int) (Math.random() * ((maxAstX - minAstX) + 1)) + minAstX;
+				int randomIntY = (int) (Math.random() * ((maxAstY - minAstY) + 1)) + minAstY;
 				int randomIntR = (int) (Math.random() * ((maxR - minR) + 1)) + minR;
 
 				Circle p = new Circle(currentPid, randomIntX, randomIntY, randomIntR);
@@ -174,24 +267,13 @@ public class MyPeriodicLoop extends PeriodicLoop {
 
 			moveOnceIn10miliseconds++; // will make astroid to move in correct speed
 			// moving astroids by redrawing them:
-		//	astroidSpeed = astroidSpeed-1;
-			if (CurrentTimer<25) {
-				astroidSpeed =100;
+			// astroidSpeed = astroidSpeed-1;
+			if ((InitgameDuration-(int)elapsedTime)>6){
+				astroidSpeed=((InitgameDuration-(int)elapsedTime)*2);
 			}
-			if (CurrentTimer<20) {
-				astroidSpeed =80;
-			}
-			if (CurrentTimer<15) {
-				astroidSpeed =50;
-			}
-			if (CurrentTimer<10) {
-				astroidSpeed =30;
-			}
-			if (CurrentTimer<10) {
-				astroidSpeed =20;
-			}
-			if (moveOnceIn10miliseconds >= astroidSpeed) {
-				System.out.println(astroidSpeed);
+//freezeFactor=1;
+			if ((moveOnceIn10miliseconds >= astroidSpeed) && (freezeFactor == 0)) {
+
 				moveOnceIn10miliseconds = 0;
 				Game.UI().canvas().moveShape("p0", 1, 1);
 				Game.UI().canvas().moveShape("p1", -1, 1);
@@ -202,39 +284,10 @@ public class MyPeriodicLoop extends PeriodicLoop {
 				Game.UI().canvas().moveShape("p6", -1, 1);
 			}
 
-			// // another check: do we have a boom? if we do - we move the ship back down!
-
-			// if ((shipX + 5 * radius >= px1) && (shipX2 <= px1) && (shipY >= py1) &&
-			// (shipY2 <= py2)) {
-			// int randomIntX = (int) (Math.random() * ((maxX - minX) + 1)) + minX;
-
-			// Game.UI().canvas().moveToLocation("space ship", randomIntX, 700);
-			// content.myCharacter().setLocation(new Point(randomIntX, 700));
-			// Game.UI().canvas().moveToLocation("space ship", randomIntX, 700);
-			// content.myCharacter().setLocation(new Point(randomIntX, 700));
-
-			// shipX = content.myCharacter().getLocation().x;
-			// shipY = content.myCharacter().getLocation().y;
-
-			// }
-
 		}
 
-		// TODO: Remove comments from next 2 lines
 		if (character == null)
 			return;
-
-		// TODO
-		// Call the canvas to change the shape properties according to
-		// its current property values
-		// You can get the shape using canvas.getShape(id) with the id of your character
-		// Then you can cast it so you can refer to its specific properties.
-		// For example, if your shape is a Circle you can use:
-		// Circle circle = (Circle) canvas.getShape("MyCircle");
-		// circle.move(-10, -10);
-		// content.myCharacter().setRotation(content.myCharacter().getRotation() +20);
-		// content.changeCharacter();
-		// content.myCharacter().moveLocation(0, -10);
 
 	}
 

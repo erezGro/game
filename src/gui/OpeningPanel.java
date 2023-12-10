@@ -68,28 +68,41 @@ public class OpeningPanel extends JPanel {
 
         backgroundLabel.add(inputPanel, BorderLayout.CENTER);
 
-        // add(inputPanel, BorderLayout.CENTER); // Set the input panel as the center
-        // component
         JPanel imagePanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); // Panel for the image
         ImageIcon centerImage = new ImageIcon("resources/shuttle_T.jpg"); // Replace with your image file path
         JLabel imageLabel = new JLabel(centerImage);
         imagePanel.add(imageLabel);
         inputPanel.add(imagePanel); // Add the image panel to the input panel
 
-        JPanel buttonPanel = new JPanel(new GridBagLayout());
+        Font buttonFont = new Font("Arial", Font.PLAIN, 30);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 0, 10, 0); // Add vertical space
+
+        JButton insructionsButton = new JButton("Game Insructions");
+        insructionsButton.setFont(buttonFont);
+        insructionsButton.setBackground(new Color(255, 115, 31));
+
+        insructionsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new InstructionsPanel();
+                InstructionsPanel.showInstructions();
+            }
+        });
+
+       JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); // Use FlowLayout for buttonPanel
+
+
         backgroundLabel.add(buttonPanel, BorderLayout.SOUTH);
 
         JButton startGameButton = new JButton("Start Game!");
-        Font buttonFont = new Font("Arial", Font.PLAIN, 30);
 
         startGameButton.setFont(buttonFont);
         startGameButton.setBackground(new Color(255, 115, 31));
 
-        buttonPanel.add(startGameButton, gbc);
+        buttonPanel.add(insructionsButton);
+        buttonPanel.add(startGameButton);
 
         startGameButton.addActionListener(new ActionListener() {
             @Override
@@ -111,7 +124,7 @@ public class OpeningPanel extends JPanel {
                     frame.dispose();
                     // Start our game :)
                     game.initGame();
-                    //Game.audioPlayer().play("resources/audio/audio_sample.wav", 0);
+                    // Game.audioPlayer().play("resources/audio/audio_sample.wav", 0);
                     Game.audioPlayer().play(Game.gameMusicPath, 0);
 
                 }
@@ -131,8 +144,6 @@ public class OpeningPanel extends JPanel {
         frame.pack();
         frame.setLocationRelativeTo(null); // Center the frame on the screen
         frame.setVisible(true);
-
-        
 
     }
 }
