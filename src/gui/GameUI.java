@@ -3,20 +3,21 @@ package gui;
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 
-import shapes.Image;
-
 
 public class GameUI {
 	JFrame frame;
 	GameCanvas canvas;
 	GameDashboard dashboard;
+
 	
 	public GameUI(String gameName, int width, int height) {
+
 		
 		frame = new JFrame(gameName);
 		JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(width, height);
+		frame.setResizable(false); 
 		canvas = new GameCanvas();
 		dashboard = new GameDashboard();
 		split.setTopComponent(canvas);
@@ -50,8 +51,7 @@ public class GameUI {
 	public void setFocusable(boolean focusable) {
 		this.frame.setFocusable(focusable);
 	}
-	
-
 }
+
 
 

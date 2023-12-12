@@ -17,6 +17,9 @@ public class MyKeyboardListener extends KeyboardListener {
 		myContent = (MyContent) this.content;
 	}
 
+	int minY = (int) (Game.CANVA_HEIGHT * 0.7);
+	int maxX = (int) (Game.CANVA_WIDTH * 0.94);
+
 	@Override
 	public void directionalKeyPressed(Direction direction) {
 		switch (direction) {
@@ -24,8 +27,8 @@ public class MyKeyboardListener extends KeyboardListener {
 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.UP);
 				myContent.myCharacter().moveLocation(0, -10);
 				if ((myContent.myCharacter().getLocation().y) < 0) {
-					Game.UI().canvas().moveToLocation("space ship", 500, 630);
-					myContent.myCharacter().setLocation(new Point(500, 630));
+					Game.UI().canvas().moveToLocation("space ship", 500, minY);
+					myContent.myCharacter().setLocation(new Point(500, minY));
 
 					score++;
 					Text gameScoreText = new Text("ScoreText", "Score: " + score, 100, 100);
@@ -38,21 +41,21 @@ public class MyKeyboardListener extends KeyboardListener {
 				break;
 			case DOWN:
 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DOWN);
-				if ((myContent.myCharacter().getLocation().y) < 600) {
+				if ((myContent.myCharacter().getLocation().y) < minY) {
 
 					myContent.myCharacter().moveLocation(0, 10);
 				}
 				break;
 			case LEFT:
 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.LEFT);
-				if ((myContent.myCharacter().getLocation().x) > 20) {
+				if ((myContent.myCharacter().getLocation().x) > 5) {
 
 					myContent.myCharacter().moveLocation(-10, 0);
 				}
 				break;
 			case RIGHT:
 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.RIGHT);
-				if ((myContent.myCharacter().getLocation().x) < 954) {
+				if ((myContent.myCharacter().getLocation().x) < maxX) {
 
 					myContent.myCharacter().moveLocation(10, 0);
 				}
@@ -62,8 +65,8 @@ public class MyKeyboardListener extends KeyboardListener {
 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.UP);
 				myContent.myCharacter().moveLocation(0, -10);
 				if ((myContent.myCharacter().getLocation().y) < 0) {
-					Game.UI().canvas().moveToLocation("space ship", 500, 630);
-					myContent.myCharacter().setLocation(new Point(500, 630));
+					Game.UI().canvas().moveToLocation("space ship", 500, minY);
+					myContent.myCharacter().setLocation(new Point(500, minY));
 
 					score++;
 					Text gameScoreText = new Text("ScoreText", "Score: " + score, 100, 100);
@@ -76,21 +79,21 @@ public class MyKeyboardListener extends KeyboardListener {
 				break;
 			case XDOWN:
 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DOWN);
-				if ((myContent.myCharacter().getLocation().y) < 630) {
+				if ((myContent.myCharacter().getLocation().y) < minY) {
 
 					myContent.myCharacter().moveLocation(0, 10);
 				}
 				break;
 			case ALEFT:
 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.LEFT);
-				if ((myContent.myCharacter().getLocation().x) > 20) {
+				if ((myContent.myCharacter().getLocation().x) > 5) {
 
 					myContent.myCharacter().moveLocation(-10, 0);
 				}
 				break;
 			case DRIGHT:
 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.RIGHT);
-				if ((myContent.myCharacter().getLocation().x) < 954) {
+				if ((myContent.myCharacter().getLocation().x) < maxX) {
 
 					myContent.myCharacter().moveLocation(10, 0);
 				}
@@ -98,11 +101,11 @@ public class MyKeyboardListener extends KeyboardListener {
 
 			case UR:
 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.UR);
-				if ((myContent.myCharacter().getLocation().x) < 954) {
+				if ((myContent.myCharacter().getLocation().x) < maxX) {
 					myContent.myCharacter().moveLocation(10, -20);
 					if ((myContent.myCharacter().getLocation().y) < 0) {
-						Game.UI().canvas().moveToLocation("space ship", 500, 630);
-						myContent.myCharacter().setLocation(new Point(500, 630));
+						Game.UI().canvas().moveToLocation("space ship", 500, minY);
+						myContent.myCharacter().setLocation(new Point(500, minY));
 
 						score++;
 						Text gameScoreText = new Text("ScoreText", "Score: " + score, 100, 100);
@@ -114,12 +117,7 @@ public class MyKeyboardListener extends KeyboardListener {
 					}
 
 				}
-				// 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DR);
-				// if (((myContent.myCharacter().getLocation().x) < 954)
-				// 		&& ((myContent.myCharacter().getLocation().y) < 630)) {
 
-				// 	myContent.myCharacter().moveLocation(10, -20);
-				// }
 				break;
 
 			case UL:
@@ -129,8 +127,8 @@ public class MyKeyboardListener extends KeyboardListener {
 					myContent.myCharacter().moveLocation(-10, -20);
 
 					if ((myContent.myCharacter().getLocation().y) < 0) {
-						Game.UI().canvas().moveToLocation("space ship", 500, 630);
-						myContent.myCharacter().setLocation(new Point(500, 630));
+						Game.UI().canvas().moveToLocation("space ship", 500, minY);
+						myContent.myCharacter().setLocation(new Point(500, minY));
 
 						score++;
 						Text gameScoreText = new Text("ScoreText", "Score: " + score, 100, 100);
@@ -142,18 +140,12 @@ public class MyKeyboardListener extends KeyboardListener {
 					}
 
 				}
-				// 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DR);
-				// if (((myContent.myCharacter().getLocation().x) < 954)
-				// 		&& ((myContent.myCharacter().getLocation().y) < 630)) {
-
-				// 	myContent.myCharacter().moveLocation(-10, -20);
-				// }
 				break;
 
 			case DR:
 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DR);
-				if (((myContent.myCharacter().getLocation().x) < 954)
-						&& ((myContent.myCharacter().getLocation().y) < 630)) {
+				if (((myContent.myCharacter().getLocation().x) < maxX)
+						&& ((myContent.myCharacter().getLocation().y) < minY)) {
 
 					myContent.myCharacter().moveLocation(10, 20);
 				}
@@ -161,8 +153,8 @@ public class MyKeyboardListener extends KeyboardListener {
 
 			case DL:
 				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DL);
-				if (((myContent.myCharacter().getLocation().x) >20)
-						&& ((myContent.myCharacter().getLocation().y) < 630)) {
+				if (((myContent.myCharacter().getLocation().x) > 20)
+						&& ((myContent.myCharacter().getLocation().y) < minY)) {
 
 					myContent.myCharacter().moveLocation(-10, 20);
 				}
