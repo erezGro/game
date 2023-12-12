@@ -80,13 +80,13 @@ public class MyGame extends Game {
 		
 		Point[] points = {
 
-				new Point(400, 400),
-				new Point(300, 300),
-				new Point(900, 200),
-				new Point(800, 500),
-				new Point(700, 500),
-				new Point(670, 150),
-				new Point(330, 150)
+				new Point(400, 0),
+				new Point(300, 50),
+				new Point(900, 150),
+				new Point(800, 200),
+				new Point(700, 175),
+				new Point(670, 125),
+				new Point(330, 75)
 		};
 		///////////////////// this is where we create the
 		///////////////////// astroids///////////////////////
@@ -107,8 +107,6 @@ public class MyGame extends Game {
 		GameDashboard dashboard = gameUI.dashboard();
 
 		dashboard.setBackground(Color.BLACK);
-
-		//dashboard.addButton(new StartGameButton("StartGame", "Start Game", 60, 40));
 		ChangeButton changeButton = new ChangeButton("changeButton", "Change Space", 500, 40);
 		MusicButton playMuteButton = new MusicButton("musicButton", "Mute", 700, 40);
 		playMuteButton.setButtonColor(new Color(255,204,204));

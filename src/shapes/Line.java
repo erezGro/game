@@ -70,35 +70,7 @@ public class Line extends Shape {
 		this.y1 = y;
 	}
 
-	// @Override
-	// public int x1CircPosition() {
-	// 	// TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'x1CircPosition'");
-	// }
-
-	// @Override
-	// public int x2CircPosition() {
-	// 	// TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'x2CircPosition'");
-	// }
-
-	// @Override
-	// public int y1CircPosition() {
-	// 	// TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'y1CircPosition'");
-	// }
-
-	// @Override
-	// public int y2CircPosition() {
-	// 	// TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'y2CircPosition'");
-	// }
-
-	// @Override
-	// public int getRadius() {
-	// 	// TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'getRadius'");
-	// }	
+	
 	
 
 }

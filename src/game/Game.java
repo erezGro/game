@@ -1,6 +1,8 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import DB.ExcelDB;
 import DB.ExcelTable;
@@ -20,13 +22,21 @@ public abstract class Game {
 	public static long gameStartTime = System.currentTimeMillis() / 1000;
 	public static String userName;
 	static ExcelTable results;
-	public static String  gameMusicPath = "resources/audio/GameMusic.wav"; 
+	public static String gameMusicPath = "resources/audio/GameMusic.wav";
+	// Get the screen size
+	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+	public static  int CANVA_WIDTH ;
+	public static int CANVA_HEIGHT;
 
 	public Game(String userName) {
 		scheduler = new PeriodicScheduler();
 		excelDB = ExcelDB.getInstance();
 		audioPlayer = new AudioPlayer();
 		Game.userName = userName;
+		CANVA_WIDTH = (int) (screenSize.width * 0.9);
+		CANVA_HEIGHT = (int) (screenSize.height * 0.9);
+
 	}
 
 	public void setGameContent(GameContent content) {
@@ -54,7 +64,15 @@ public abstract class Game {
 	}
 
 	public void initUI() {
-		gameUI = new GameUI("My Game", 1000, 1000);
+
+		// Get the screen size
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+		// Calculate the width and height based on a percentage (e.g., 90%)
+		int screenWidth = (int) (screenSize.width * 0.9);
+		int screenHeight = (int) (screenSize.height * 0.9);
+
+		gameUI = new GameUI("My Game", screenWidth, screenHeight);
 		initCanvas();
 		initDashboard();
 		gameUI.setFocusable(true);
@@ -123,7 +141,8 @@ public abstract class Game {
 		EndButton endButton = new EndButton("btnEND", "END", 100, 40, 850, 40);
 		endButton.setButtonColor(orange);
 		gameUI.dashboard().addButton(endButton);
-		// gameUI.dashboard().addButton(new EndButton("btnEND", "END", 100, 40, 850, 40));
+		// gameUI.dashboard().addButton(new EndButton("btnEND", "END", 100, 40, 850,
+		// 40));
 	}
 
 	// You can refer to the game UI from anywhere by Game.UI()

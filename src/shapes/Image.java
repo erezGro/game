@@ -130,30 +130,7 @@ public class Image extends Shape {
 		draw(null);
 	}
 
-	// @Override
-	// public int x1CircPosition() {
-	// 	throw new UnsupportedOperationException("Unimplemented method 'x1CircPosition'");
-	// }
-
-	// @Override
-	// public int x2CircPosition() {
-	// 	throw new UnsupportedOperationException("Unimplemented method 'x2CircPosition'");
-	// }
-
-	// @Override
-	// public int y1CircPosition() {
-	// 	throw new UnsupportedOperationException("Unimplemented method 'y1CircPosition'");
-	// }
-
-	// @Override
-	// public int y2CircPosition() {
-	// 	throw new UnsupportedOperationException("Unimplemented method 'y2CircPosition'");
-	// }
-
-	// @Override
-	// public int getRadius() {
-	// 	throw new UnsupportedOperationException("Unimplemented method 'getRadius'");
-	// }
+	
 	
 	
 }

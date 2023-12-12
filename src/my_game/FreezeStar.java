@@ -51,7 +51,6 @@ public class FreezeStar implements ShapeListener{
 	}
 	
 	public String getImageName() {
-//		return "resources/asteroid_small.png";
         return "resources/freezer.jpg";
 
 	}
