@@ -3,6 +3,7 @@ package main;
 import java.awt.Color;
 import my_game.MyCharacter;
 import my_game.Point;
+import my_game.ScoreHandler;
 import shapes.Text;
 import java.awt.event.KeyEvent;
 import game.Game;
@@ -29,13 +30,15 @@ public class MyKeyboardListener extends KeyboardListener {
 				if ((myContent.myCharacter().getLocation().y) < 0) {
 					Game.UI().canvas().moveToLocation("space ship", 500, minY);
 					myContent.myCharacter().setLocation(new Point(500, minY));
+					//Add 1 point to the Score
+					score = ScoreHandler.addPointsToScore(score);
 
-					score++;
+				/* 	score++;
 					Text gameScoreText = new Text("ScoreText", "Score: " + score, 100, 100);
 					gameScoreText.setColor(Color.yellow);
 					gameScoreText.setFontName("Helvetica");
 					gameScoreText.setFontSize(30);
-					Game.UI().canvas().addShape(gameScoreText);
+					Game.UI().canvas().addShape(gameScoreText); */
 
 				}
 				break;
@@ -67,14 +70,16 @@ public class MyKeyboardListener extends KeyboardListener {
 				if ((myContent.myCharacter().getLocation().y) < 0) {
 					Game.UI().canvas().moveToLocation("space ship", 500, minY);
 					myContent.myCharacter().setLocation(new Point(500, minY));
-
+					//Add 1 point to the Score
+					score = ScoreHandler.addPointsToScore(score);
+/* 
 					score++;
 					Text gameScoreText = new Text("ScoreText", "Score: " + score, 100, 100);
 					gameScoreText.setColor(Color.yellow);
 					gameScoreText.setFontName("Helvetica");
 					gameScoreText.setFontSize(30);
 					Game.UI().canvas().addShape(gameScoreText);
-
+ */
 				}
 				break;
 			case XDOWN:
@@ -106,13 +111,15 @@ public class MyKeyboardListener extends KeyboardListener {
 					if ((myContent.myCharacter().getLocation().y) < 0) {
 						Game.UI().canvas().moveToLocation("space ship", 500, minY);
 						myContent.myCharacter().setLocation(new Point(500, minY));
+						//Add 1 point to the Score
+						score = ScoreHandler.addPointsToScore(score);
 
-						score++;
+						/* score++;
 						Text gameScoreText = new Text("ScoreText", "Score: " + score, 100, 100);
 						gameScoreText.setColor(Color.yellow);
 						gameScoreText.setFontName("Helvetica");
 						gameScoreText.setFontSize(30);
-						Game.UI().canvas().addShape(gameScoreText);
+						Game.UI().canvas().addShape(gameScoreText); */
 
 					}
 
@@ -129,13 +136,15 @@ public class MyKeyboardListener extends KeyboardListener {
 					if ((myContent.myCharacter().getLocation().y) < 0) {
 						Game.UI().canvas().moveToLocation("space ship", 500, minY);
 						myContent.myCharacter().setLocation(new Point(500, minY));
+						//Add 1 point to the Score
+						score = ScoreHandler.addPointsToScore(score);
 
-						score++;
+/* 						score++;
 						Text gameScoreText = new Text("ScoreText", "Score: " + score, 100, 100);
 						gameScoreText.setColor(Color.yellow);
 						gameScoreText.setFontName("Helvetica");
 						gameScoreText.setFontSize(30);
-						Game.UI().canvas().addShape(gameScoreText);
+						Game.UI().canvas().addShape(gameScoreText); */
 
 					}
 

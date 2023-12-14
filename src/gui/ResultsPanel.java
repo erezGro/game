@@ -25,7 +25,7 @@ public class ResultsPanel extends JPanel {
         add(titleLabel, BorderLayout.NORTH);
 
         // Create a table to display the results
-        JTable table = new JTable(new DefaultTableModel(results, new String[] { "Column 1", "Column 2" }));
+        JTable table = new JTable(new DefaultTableModel(results, new String[] { "Name", "Result" }));
         table.setFillsViewportHeight(true);
 
         // Create a scroll pane for the table

@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,7 +59,7 @@ public class OpeningPanel extends JPanel {
         nameLabel.setFont(new Font("Arial", Font.BOLD, 30));
         inputPanel.add(nameLabel, BorderLayout.EAST);
 
-        nameTextField = new JTextField(10);
+        nameTextField = new JTextField("DefaultUser",10);
         Font textFieldFont = new Font("Arial", Font.PLAIN, 30); // Create a font with a font size of 16
         nameTextField.setFont(textFieldFont); // Set the font for the text field
 

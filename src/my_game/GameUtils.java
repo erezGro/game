@@ -9,6 +9,7 @@ import shapes.Circle;
 public class GameUtils {
     int minY = (int) (Game.CANVA_HEIGHT * 0.7);
     int maxX = (int) (Game.CANVA_WIDTH * 0.94);
+    
 
     public void redrawAstroids(Circle astroid,String currentPid) {
 
@@ -88,5 +89,12 @@ public class GameUtils {
         && (shipX < maxX) && (shipX > 60) && (isStarShown)) return true;
         else return false;
 
+    }
+
+    public static void moveShipToStartLocation( MyCharacter spaceShip,int maxAstX , int minAstX , int minY)  {
+
+        int randomIntX = (int) (Math.random() * ((maxAstX - minAstX) + 1)) + minAstX;
+        Game.UI().canvas().moveToLocation("space ship", randomIntX, minY);
+        spaceShip.setLocation(new Point(randomIntX, minY));
     }
 }
