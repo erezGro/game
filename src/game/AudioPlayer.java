@@ -26,7 +26,7 @@ public class AudioPlayer {
 	 * Play a sound file for numIterations times.
 	 * To play in a continuous loop, use numIterations = 0;
 	 */	
-	public void play(String musicPath, int numIterations) {
+	public  void play(String musicPath, int numIterations) {
 		this.musicPath = musicPath;
 		File musicFile = new File(this.musicPath);
 		try {
@@ -64,6 +64,7 @@ public class AudioPlayer {
             Clip soundClip = AudioSystem.getClip();
             AudioInputStream soundStream = AudioSystem.getAudioInputStream(new File(soundFilePath));
             soundClip.open(soundStream);
+			soundClip.loop(0);
             soundClip.start();
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();

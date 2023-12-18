@@ -28,6 +28,9 @@ public abstract class Game {
 
 	public static  int CANVA_WIDTH ;
 	public static int CANVA_HEIGHT;
+	public static int minX;
+	public static int MaxY;
+	public static int minAstX;
 
 	public Game(String userName) {
 		scheduler = new PeriodicScheduler();
@@ -36,7 +39,8 @@ public abstract class Game {
 		Game.userName = userName;
 		CANVA_WIDTH = (int) (screenSize.width * 0.9);
 		CANVA_HEIGHT = (int) (screenSize.height * 0.9);
-
+		minAstX = 10;
+		minX = 100;
 	}
 
 	public void setGameContent(GameContent content) {

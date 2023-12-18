@@ -1,43 +1,27 @@
 package my_game;
 
 import java.awt.Color;
-import java.util.HashMap;
-import java.util.Map;
 
 import game.AudioPlayer;
 import game.Game;
+import main.MyContent;
 import shapes.Circle;
-import shapes.Text;
-
-public class GameUtils {
-    //int minY = (int) (Game.CANVA_HEIGHT * 0.7);
-    //int maxX = (int) (Game.CANVA_WIDTH * 0.94);
-    
+import shapes.FilledShape;
+import shapes.Shape;
 
 
-    public static  int  getRandomLocationX() {
-/*         int maxX = (int) (Game.CANVA_WIDTH * 0.94);
-        int minX = Game.minX; */
+public class AstroidHandler {
+    int minY = (int) (Game.CANVA_HEIGHT * 0.7);
+    int maxX = (int) (Game.CANVA_WIDTH * 0.94);
+    int moveOnceIn10miliseconds = 0;
+	private MyContent content;
+	int InitgameDuration = 30;
+	int astroidSpeed = 5000;
+    public Object astroidHandler;
+//	public int minAstX = 20;
+//	public int maxAstX = maxX;
 
-
-        int tStarX = (int) (Math.random() * (((int) (Game.CANVA_WIDTH * 0.94) - Game.minX) + 1)) + Game.minX;
-        
-        return tStarX;
-
-    }
-
-    
-    public static  int  getRandomLocationY() {
-        //int minY = (int) (Game.CANVA_HEIGHT * 0.7);
-
-        //int tStarY = (int) ((int) (Game.CANVA_HEIGHT * 0.7) - 0.3 * (int) (Math.random() * (((int) (Game.CANVA_HEIGHT * 0.7)))));        
-        int tStarY = (int) ( (Game.CANVA_HEIGHT * 0.7)*(Math.random()));//(int) ((int) (Game.CANVA_HEIGHT * 0.7) - 0.3 * (int) (Math.random() * (((int) (Game.CANVA_HEIGHT * 0.7)))));        
-
-        return tStarY;
-
-    }
-    
-/*     public void redrawAstroids(Circle astroid,String currentPid) {
+    public void redrawAstroids(Circle astroid,String currentPid) {
 
         int px1 = astroid.x1CircPosition();
         int py1 = astroid.y1CircPosition();
@@ -61,6 +45,7 @@ public class GameUtils {
             
     }
     public void moveAstroids(Circle astroid) {
+        int moveOnceIn10miliseconds = 0;
 
         Game.UI().canvas().moveShape("p0", 1, 1);
         Game.UI().canvas().moveShape("p1", -1, 1);
@@ -70,7 +55,7 @@ public class GameUtils {
         Game.UI().canvas().moveShape("p5", 1, 1);
         Game.UI().canvas().moveShape("p6", -1, 1);
 
-    } 
+    }
     public boolean checkExplostion(Circle astroid, MyCharacter spaceShip) {
         int shipX = spaceShip.getLocation().x;
         int shipY = spaceShip.getLocation().y;
@@ -105,7 +90,49 @@ public class GameUtils {
         else
             return false;
     }
-*/
+
+    public void astroidAction(String[] pids  , long elapsedTime , MyCharacter spaceShip) {
+
+		for (int i = 0; i < pids.length; i++) {
+
+			String currentPid = pids[i];
+			Shape currentP = Game.UI().canvas().getShape(pids[i]);
+
+			// check: do we have a boom? if we do - we move the ship back down!
+			if (checkExplostion((Circle) currentP, spaceShip)) {
+				//GameUtils.moveShipToStartLocation(spaceShip,maxX , 20 ,  minY);
+                SpaceShipHandler.moveShipToStartLocation(spaceShip,maxX , 20 ,  minY);
+
+			}
+
+			// if astroid is at the edge - we recreate it
+			redrawAstroids((Circle) currentP, currentPid);
+			moveOnceIn10miliseconds++; // will make astroid to move in correct speed
+			// moving astroids by redrawing them:
+	
+			if  (((InitgameDuration - (int) elapsedTime) > 3) && (astroidSpeed>1)) {
+				astroidSpeed = ((InitgameDuration - (int) elapsedTime) * 2);
+			}
+			// freezeFactor=1;
+			if ((moveOnceIn10miliseconds >= 5*astroidSpeed)) {
+
+				moveOnceIn10miliseconds = 0;
+				moveAstroids((Circle) currentP);
+
+			}
+
+		}
+    }
+
+        public static void astroidInFreezeMode(String[] pids , long gameDuration , long currentTimer) {
+			for (int i = 0; i < pids.length; i++) {
+				Shape currentP = Game.UI().canvas().getShape(pids[i]);
+				((FilledShape) currentP).setFillColor(Color.BLACK);
+				Game.UI().canvas().addShape(currentP);
+			}
+
+    }
+ 
 /*     public boolean checkIfSpaceGotBonusStar( MyCharacter spaceShip,int starX,int starY, boolean isStarShown){
         int shipX = spaceShip.getLocation().x;
 		int shipY = spaceShip.getLocation().y;

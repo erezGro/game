@@ -41,9 +41,9 @@ public class TimerHandler {
 			if (currentTimer <= 10) {
                 if ((int) currentTimer % 2 == 0) {
                     textForTimer.setColor(Color.red);
-                    if ((int) currentTimer <= 4) {
+ /*                    if ((int) currentTimer == 4) {
                         AudioPlayer.playSound("resources/audio/ping.wav");
-                    }
+                    } */
                 } else {
                     textForTimer.setColor(Color.yellow);
                 }
