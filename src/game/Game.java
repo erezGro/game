@@ -31,7 +31,7 @@ public abstract class Game {
 	public static int minX;
 	public static int MaxY;
 	public static int minAstX;
-
+	public static int gameDuration = 30;
 	public Game(String userName) {
 		scheduler = new PeriodicScheduler();
 		excelDB = ExcelDB.getInstance();

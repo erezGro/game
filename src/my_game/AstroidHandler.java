@@ -132,6 +132,19 @@ public class AstroidHandler {
 			}
 
     }
+
+        public static long astroidInFreezeModeDelay(long gameDuration , long currentTimer) {
+            try {
+                Thread.sleep(5000);
+                Game.gameDuration = Game.gameDuration + 5;
+                currentTimer = currentTimer + 5;
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            return currentTimer;
+    }
+
+    
  
 /*     public boolean checkIfSpaceGotBonusStar( MyCharacter spaceShip,int starX,int starY, boolean isStarShown){
         int shipX = spaceShip.getLocation().x;

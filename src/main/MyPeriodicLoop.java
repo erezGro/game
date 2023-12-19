@@ -1,29 +1,29 @@
 package main;
 
-import java.awt.Color;
+//import java.awt.Color;
 import java.util.Map;
 
 import game.AudioPlayer;
 import game.Game;
 import game.PeriodicLoop;
-import shapes.Circle;
-import shapes.FilledShape;
-import shapes.Shape;
+//import shapes.Circle;
+//import shapes.FilledShape;
+//import shapes.Shape;
 import shapes.Text;
-//import my_game.GameUtils;
+////import my_game.GameUtils;
 import my_game.SpaceShipHandler;
 
 import my_game.AstroidHandler;
 import my_game.GameUtils;
 import my_game.MyCharacter;
-import my_game.Point;
+//import my_game.Point;
 import my_game.TimerHandler;
 
 
 public class MyPeriodicLoop extends PeriodicLoop {
 
 	int moveOnceIn10miliseconds = 0;
-	int gameDuration = 30;
+	//int gameDuration = 30;
 	int InitgameDuration = 30;
 
 	//int astroidSpeed = 5000;
@@ -71,10 +71,10 @@ public class MyPeriodicLoop extends PeriodicLoop {
 
 		MyCharacter character = content.myCharacter();
 
-		Map<String, Long> timers = TimerHandler.setTimerValue(gameDuration);
+		Map<String, Long> timers = TimerHandler.setTimerValue(Game.gameDuration);
 		long elapsedTime = timers.get("elapsedTime");
 		long currentTimer = timers.get("currentTimer");
-		Text textForTimer = TimerHandler.setTimerTextParams(gameDuration);
+		Text textForTimer = TimerHandler.setTimerTextParams(Game.gameDuration);
 		
 		if (setLocationFlag) {
 			setLocationFlag = false;
@@ -104,7 +104,8 @@ public class MyPeriodicLoop extends PeriodicLoop {
 		}
 		textForTimer = TimerHandler.changeTimerParams (currentTimer,textForTimer);
 
-		if (elapsedTime == gameDuration) {
+		if (elapsedTime == Game.gameDuration) {
+			AudioPlayer.playSound("resources/audio/endgame.wav");
 			Game.endGame();
 		}
 
@@ -123,7 +124,7 @@ public class MyPeriodicLoop extends PeriodicLoop {
 
 			//playBoom = false;
 			//showClock = false;
-			gameDuration = gameDuration + 10;
+			Game.gameDuration = Game.gameDuration + 10;
 
 			Game.UI().canvas().moveToLocation("Time Star", Game.CANVA_WIDTH*2, Game.CANVA_HEIGHT*2);
 
@@ -142,15 +143,15 @@ public class MyPeriodicLoop extends PeriodicLoop {
 			//showClock = false;
 
 			// while freeze - Astroids are BLACK:
-			AstroidHandler.astroidInFreezeMode(pids,gameDuration,currentTimer);
-
-			try {
+			AstroidHandler.astroidInFreezeMode(pids,Game.gameDuration,currentTimer);
+			currentTimer = AstroidHandler.astroidInFreezeModeDelay(Game.gameDuration , currentTimer);
+			/* try {
 				Thread.sleep(5000);
-				gameDuration = gameDuration + 5;
+				Game.gameDuration = Game.gameDuration + 5;
 				currentTimer = currentTimer + 5;
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
-			}
+			} */
 			textForTimer = TimerHandler.changeTimerParams (currentTimer,textForTimer);
 
 		}
