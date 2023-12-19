@@ -100,8 +100,7 @@ public class AstroidHandler {
 
 			// check: do we have a boom? if we do - we move the ship back down!
 			if (checkExplostion((Circle) currentP, spaceShip)) {
-				//GameUtils.moveShipToStartLocation(spaceShip,maxX , 20 ,  minY);
-                SpaceShipHandler.moveShipToStartLocation(spaceShip,maxX , 20 ,  minY);
+                SpaceShipHandler.moveShipToStartLocation(spaceShip,maxX , Game.minAstX+10 ,  minY);
 
 			}
 
@@ -143,24 +142,4 @@ public class AstroidHandler {
             }
             return currentTimer;
     }
-
-    
- 
-/*     public boolean checkIfSpaceGotBonusStar( MyCharacter spaceShip,int starX,int starY, boolean isStarShown){
-        int shipX = spaceShip.getLocation().x;
-		int shipY = spaceShip.getLocation().y;
-        
-		//Check if user got the time bonus
-		if ((shipX >= starX - 40) && (shipY >= starY - 40) && (shipX <= starX + 40) && (shipY <= starY + 40)
-        && (shipX < maxX) && (shipX > 60) && (isStarShown)) return true;
-        else return false;
-
-    }
-
-    public static void moveShipToStartLocation( MyCharacter spaceShip,int maxAstX , int minAstX , int minY)  {
-
-        int randomIntX = (int) (Math.random() * ((maxAstX - minAstX) + 1)) + minAstX;
-        Game.UI().canvas().moveToLocation("space ship", randomIntX, minY);
-        spaceShip.setLocation(new Point(randomIntX, minY));
-    } */
 }

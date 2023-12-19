@@ -1,10 +1,5 @@
 package my_game;
-
-import java.awt.Color;
-
-import game.AudioPlayer;
 import game.Game;
-import shapes.Circle;
 
 public class SpaceShipHandler {
     int minY = (int) (Game.CANVA_HEIGHT * 0.7);

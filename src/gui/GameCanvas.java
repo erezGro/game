@@ -9,10 +9,8 @@ import java.awt.event.MouseMotionListener;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
 import game.Game;
 import shapes.Image;
 import shapes.Shape;
@@ -90,7 +88,6 @@ public class GameCanvas extends JPanel  {
 		final Shape shape = shapes.get(id);
 		if (shape != null) {
 			shape.moveToLocation(cordX, cordY);
-			//shape.setLocation(cordX, cordY);
 			this.repaint();
 		}
 	}

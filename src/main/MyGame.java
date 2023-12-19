@@ -11,7 +11,6 @@ import buttons.MusicButton;
 import my_game.MyCharacter;
 import my_game.TimeStar;
 import my_game.FreezeStar;
-
 import my_game.Point;
 import shapes.Circle;
 import shapes.Text;
@@ -26,10 +25,6 @@ public class MyGame extends Game {
 
 	private MyContent content;
 	private Circle[] pointss;
-
-	
-
-	// public long gameStartTime;
 
 	@Override
 	protected void initCanvas() {
@@ -88,8 +83,7 @@ public class MyGame extends Game {
 				new Point(670, 125),
 				new Point(330, 75)
 		};
-		///////////////////// this is where we create the
-		///////////////////// astroids///////////////////////
+		// astroids init
 		pointss = new Circle[points.length];
 		for (int i = 0; i < points.length; i++) {
 			 pointss[i] = new Circle("p" + i, points[i].x, points[i].y, 20);

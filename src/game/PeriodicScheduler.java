@@ -29,9 +29,6 @@ public class PeriodicScheduler {
 	    };
 	    
 	    beeperHandle = scheduler.scheduleAtFixedRate(beeper, 0, periodicInterval, MILLISECONDS);
-//	    scheduler.schedule(new Runnable() {
-//	    	public void run() { beeperHandle.cancel(true); }
-//	    }, 8, SECONDS);
 	}
 	  
 	  public void end() {

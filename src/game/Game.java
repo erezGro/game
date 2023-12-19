@@ -32,6 +32,8 @@ public abstract class Game {
 	public static int MaxY;
 	public static int minAstX;
 	public static int gameDuration = 30;
+	public static boolean endOfGame;
+
 	public Game(String userName) {
 		scheduler = new PeriodicScheduler();
 		excelDB = ExcelDB.getInstance();
@@ -145,8 +147,6 @@ public abstract class Game {
 		EndButton endButton = new EndButton("btnEND", "END", 100, 40, 850, 40);
 		endButton.setButtonColor(orange);
 		gameUI.dashboard().addButton(endButton);
-		// gameUI.dashboard().addButton(new EndButton("btnEND", "END", 100, 40, 850,
-		// 40));
 	}
 
 	// You can refer to the game UI from anywhere by Game.UI()

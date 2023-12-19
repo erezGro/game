@@ -9,7 +9,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,9 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-// import org.apache.poi.ss.usermodel.Color;
-
 import game.Game;
 import main.MyContent;
 import main.MyGame;
@@ -68,7 +64,7 @@ public class OpeningPanel extends JPanel {
         backgroundLabel.add(inputPanel, BorderLayout.CENTER);
 
         JPanel imagePanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); // Panel for the image
-        ImageIcon centerImage = new ImageIcon("resources/shuttle_T.jpg"); // Replace with your image file path
+        ImageIcon centerImage = new ImageIcon("resources/shuttle_T.jpg"); 
         JLabel imageLabel = new JLabel(centerImage);
         imagePanel.add(imageLabel);
         inputPanel.add(imagePanel); // Add the image panel to the input panel
@@ -123,7 +119,6 @@ public class OpeningPanel extends JPanel {
                     frame.dispose();
                     // Start our game :)
                     game.initGame();
-                    // Game.audioPlayer().play("resources/audio/audio_sample.wav", 0);
                     Game.audioPlayer().play(Game.gameMusicPath, 0);
 
                 }

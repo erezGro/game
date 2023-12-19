@@ -19,7 +19,6 @@ public class MouseHandler {
 	}
 
 	public void mouseMovedOverScreen(int x, int y) {
-		//System.out.println("Mouse moved: " + x + ", "+ y);
 		if (onShape) {
 			if (shapeUnderMouse.getshapeListener() != null) {
 				shapeUnderMouse.getshapeListener().mouseExitShape(shapeUnderMouse.getId(), x, y);
@@ -31,7 +30,6 @@ public class MouseHandler {
 	}
 
 	public void mouseDraggedOverScreen(int x, int y) {
-		//System.out.println("Mouse dragged: " + x + ", "+ y);
 		if (draggedShape != null) {
 			int dx = x - dragPoint.x;
 			int dy = y - dragPoint.y;
@@ -56,7 +54,6 @@ public class MouseHandler {
 	}
 	
     public void mouseMovedOverShape(Shape shape, int x, int y) {
-		//System.out.println("Mouse moved over Shape: " + shape.getId());
 		if (!onShape) {
 			shapeUnderMouse = shape;
 			onShape = true;
@@ -67,7 +64,6 @@ public class MouseHandler {
     }
     	
     public void mouseDraggedOverShape(Shape shape, int x, int y) {
-		//System.out.println("Mouse Dragged over Shape: " + shape.getId());
 		if (draggedShape != null) {
 			int dx = x - dragPoint.x;
 			int dy = y - dragPoint.y;

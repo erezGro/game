@@ -12,7 +12,7 @@ public class InstructionsPanel extends JPanel {
         setPreferredSize(new Dimension(400, 600)); // Set the preferred size for the panel
 
         GridBagConstraints gbc1 = new GridBagConstraints();
-        gbc1.insets = new Insets(0, 0, 0, 10); // Add left padding
+        gbc1.insets = new Insets(0, 0, 0, 10); 
         gbc1.gridx = 0;
 
         // Title Label
@@ -39,7 +39,7 @@ public class InstructionsPanel extends JPanel {
 
         // Second line with image and sentence
         JPanel line2 = new JPanel(new BorderLayout());
-        ImageIcon image2 = new ImageIcon("resources/asteroid_small.png"); // Replace with your image file path
+        ImageIcon image2 = new ImageIcon("resources/asteroid_small.png"); 
         JLabel imageLabel2 = new JLabel(image2);
         line2.add(imageLabel2, BorderLayout.WEST);
 
@@ -53,7 +53,7 @@ public class InstructionsPanel extends JPanel {
 
         // Second line with image and sentence
         JPanel line3 = new JPanel(new BorderLayout());
-        ImageIcon image3 = new ImageIcon("resources/freezer.jpg"); // Replace with your image file path
+        ImageIcon image3 = new ImageIcon("resources/freezer.jpg"); 
         JLabel imageLabel3 = new JLabel(image3);
         line3.add(imageLabel3, BorderLayout.WEST);
 

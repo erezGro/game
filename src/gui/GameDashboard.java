@@ -2,9 +2,7 @@ package gui;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.JPanel;
-
 import buttons.GameButton;
 import shapes.Shape.STATUS;
 

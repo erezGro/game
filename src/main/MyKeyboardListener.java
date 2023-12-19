@@ -1,10 +1,7 @@
 package main;
-
-import java.awt.Color;
 import my_game.MyCharacter;
 import my_game.Point;
 import my_game.ScoreHandler;
-import shapes.Text;
 import java.awt.event.KeyEvent;
 import game.Game;
 import game.KeyboardListener;
@@ -23,154 +20,125 @@ public class MyKeyboardListener extends KeyboardListener {
 
 	@Override
 	public void directionalKeyPressed(Direction direction) {
-		switch (direction) {
-			case UP:
-				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.UP);
-				myContent.myCharacter().moveLocation(0, -10);
-				if ((myContent.myCharacter().getLocation().y) < 0) {
-					Game.UI().canvas().moveToLocation("space ship", 500, minY);
-					myContent.myCharacter().setLocation(new Point(500, minY));
-					//Add 1 point to the Score
-					score = ScoreHandler.addPointsToScore(score);
+		System.out.println(Game.endOfGame + " :    clicked");
 
-				/* 	score++;
-					Text gameScoreText = new Text("ScoreText", "Score: " + score, 100, 100);
-					gameScoreText.setColor(Color.yellow);
-					gameScoreText.setFontName("Helvetica");
-					gameScoreText.setFontSize(30);
-					Game.UI().canvas().addShape(gameScoreText); */
-
-				}
-				break;
-			case DOWN:
-				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DOWN);
-				if ((myContent.myCharacter().getLocation().y) < minY) {
-
-					myContent.myCharacter().moveLocation(0, 10);
-				}
-				break;
-			case LEFT:
-				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.LEFT);
-				if ((myContent.myCharacter().getLocation().x) > 5) {
-
-					myContent.myCharacter().moveLocation(-10, 0);
-				}
-				break;
-			case RIGHT:
-				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.RIGHT);
-				if ((myContent.myCharacter().getLocation().x) < maxX) {
-
-					myContent.myCharacter().moveLocation(10, 0);
-				}
-				break;
-
-			case WUP:
-				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.UP);
-				myContent.myCharacter().moveLocation(0, -10);
-				if ((myContent.myCharacter().getLocation().y) < 0) {
-					Game.UI().canvas().moveToLocation("space ship", 500, minY);
-					myContent.myCharacter().setLocation(new Point(500, minY));
-					//Add 1 point to the Score
-					score = ScoreHandler.addPointsToScore(score);
-/* 
-					score++;
-					Text gameScoreText = new Text("ScoreText", "Score: " + score, 100, 100);
-					gameScoreText.setColor(Color.yellow);
-					gameScoreText.setFontName("Helvetica");
-					gameScoreText.setFontSize(30);
-					Game.UI().canvas().addShape(gameScoreText);
- */
-				}
-				break;
-			case XDOWN:
-				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DOWN);
-				if ((myContent.myCharacter().getLocation().y) < minY) {
-
-					myContent.myCharacter().moveLocation(0, 10);
-				}
-				break;
-			case ALEFT:
-				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.LEFT);
-				if ((myContent.myCharacter().getLocation().x) > 5) {
-
-					myContent.myCharacter().moveLocation(-10, 0);
-				}
-				break;
-			case DRIGHT:
-				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.RIGHT);
-				if ((myContent.myCharacter().getLocation().x) < maxX) {
-
-					myContent.myCharacter().moveLocation(10, 0);
-				}
-				break;
-
-			case UR:
-				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.UR);
-				if ((myContent.myCharacter().getLocation().x) < maxX) {
-					myContent.myCharacter().moveLocation(10, -20);
+		if (Game.endOfGame == false){
+			switch (direction) {
+				case UP:
+					myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.UP);
+					myContent.myCharacter().moveLocation(0, -10);
 					if ((myContent.myCharacter().getLocation().y) < 0) {
 						Game.UI().canvas().moveToLocation("space ship", 500, minY);
 						myContent.myCharacter().setLocation(new Point(500, minY));
 						//Add 1 point to the Score
 						score = ScoreHandler.addPointsToScore(score);
-
-						/* score++;
-						Text gameScoreText = new Text("ScoreText", "Score: " + score, 100, 100);
-						gameScoreText.setColor(Color.yellow);
-						gameScoreText.setFontName("Helvetica");
-						gameScoreText.setFontSize(30);
-						Game.UI().canvas().addShape(gameScoreText); */
-
 					}
+					break;
+				case DOWN:
+					myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DOWN);
+					if ((myContent.myCharacter().getLocation().y) < minY) {
 
-				}
+						myContent.myCharacter().moveLocation(0, 10);
+					}
+					break;
+				case LEFT:
+					myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.LEFT);
+					if ((myContent.myCharacter().getLocation().x) > 5) {
 
-				break;
+						myContent.myCharacter().moveLocation(-10, 0);
+					}
+					break;
+				case RIGHT:
+					myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.RIGHT);
+					if ((myContent.myCharacter().getLocation().x) < maxX) {
 
-			case UL:
-				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.UL);
-				if ((myContent.myCharacter().getLocation().x) > 20) {
+						myContent.myCharacter().moveLocation(10, 0);
+					}
+					break;
 
-					myContent.myCharacter().moveLocation(-10, -20);
-
+				case WUP:
+					myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.UP);
+					myContent.myCharacter().moveLocation(0, -10);
 					if ((myContent.myCharacter().getLocation().y) < 0) {
 						Game.UI().canvas().moveToLocation("space ship", 500, minY);
 						myContent.myCharacter().setLocation(new Point(500, minY));
 						//Add 1 point to the Score
 						score = ScoreHandler.addPointsToScore(score);
+					}
+					break;
+				case XDOWN:
+					myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DOWN);
+					if ((myContent.myCharacter().getLocation().y) < minY) {
 
-/* 						score++;
-						Text gameScoreText = new Text("ScoreText", "Score: " + score, 100, 100);
-						gameScoreText.setColor(Color.yellow);
-						gameScoreText.setFontName("Helvetica");
-						gameScoreText.setFontSize(30);
-						Game.UI().canvas().addShape(gameScoreText); */
+						myContent.myCharacter().moveLocation(0, 10);
+					}
+					break;
+				case ALEFT:
+					myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.LEFT);
+					if ((myContent.myCharacter().getLocation().x) > 5) {
+
+						myContent.myCharacter().moveLocation(-10, 0);
+					}
+					break;
+				case DRIGHT:
+					myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.RIGHT);
+					if ((myContent.myCharacter().getLocation().x) < maxX) {
+
+						myContent.myCharacter().moveLocation(10, 0);
+					}
+					break;
+
+				case UR:
+					myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.UR);
+					if ((myContent.myCharacter().getLocation().x) < maxX) {
+						myContent.myCharacter().moveLocation(10, -20);
+						if ((myContent.myCharacter().getLocation().y) < 0) {
+							Game.UI().canvas().moveToLocation("space ship", 500, minY);
+							myContent.myCharacter().setLocation(new Point(500, minY));
+							//Add 1 point to the Score
+							score = ScoreHandler.addPointsToScore(score);
+						}
 
 					}
 
-				}
-				break;
+					break;
 
-			case DR:
-				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DR);
-				if (((myContent.myCharacter().getLocation().x) < maxX)
-						&& ((myContent.myCharacter().getLocation().y) < minY)) {
+				case UL:
+					myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.UL);
+					if ((myContent.myCharacter().getLocation().x) > 20) {
 
-					myContent.myCharacter().moveLocation(10, 20);
-				}
-				break;
+						myContent.myCharacter().moveLocation(-10, -20);
 
-			case DL:
-				myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DL);
-				if (((myContent.myCharacter().getLocation().x) > 20)
-						&& ((myContent.myCharacter().getLocation().y) < minY)) {
+						if ((myContent.myCharacter().getLocation().y) < 0) {
+							Game.UI().canvas().moveToLocation("space ship", 500, minY);
+							myContent.myCharacter().setLocation(new Point(500, minY));
+							//Add 1 point to the Score
+							score = ScoreHandler.addPointsToScore(score);
+						}
 
-					myContent.myCharacter().moveLocation(-10, 20);
-				}
-				break;
+					}
+					break;
+
+				case DR:
+					myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DR);
+					if (((myContent.myCharacter().getLocation().x) < maxX)
+							&& ((myContent.myCharacter().getLocation().y) < minY)) {
+
+						myContent.myCharacter().moveLocation(10, 20);
+					}
+					break;
+
+				case DL:
+					myContent.myCharacter().setDirectionPolicy(MyCharacter.Direction.DL);
+					if (((myContent.myCharacter().getLocation().x) > 20)
+							&& ((myContent.myCharacter().getLocation().y) < minY)) {
+
+						myContent.myCharacter().moveLocation(-10, 20);
+					}
+					break;
+			}
 		}
 	}
-
 	@Override
 	public void characterTyped(char c) {
 		System.out.println("key character = '" + c + "'" + " pressed.");

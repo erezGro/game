@@ -4,8 +4,6 @@ import game.Game;
 import shapes.Image;
 import game.ShapeListener;
 
-
-
 public class FreezeStar implements ShapeListener{
 	public enum Direction{
 		RIGHT (0,-50),
@@ -47,7 +45,6 @@ public class FreezeStar implements ShapeListener{
 	
 	public String getImageID() {
 		return this.imageID;
-		//return "space_ship";
 	}
 	
 	public String getImageName() {
