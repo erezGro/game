@@ -73,7 +73,7 @@ public class MyPeriodicLoop extends PeriodicLoop {
 		textForTimer = TimerHandler.changeTimerParams (currentTimer,textForTimer);
 
 		if (elapsedTime == Game.gameDuration) {
-			AudioPlayer.playSound("resources/audio/endgame.wav");
+			AudioPlayer.playSound("resources/audio/GameOver.wav");
 			Game.endOfGame = true;
 			Game.endGame();
 		}

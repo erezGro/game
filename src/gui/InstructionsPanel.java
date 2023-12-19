@@ -27,11 +27,11 @@ public class InstructionsPanel extends JPanel {
 
         // First line with image and sentence
         JPanel line1 = new JPanel(new BorderLayout());
-        ImageIcon image1 = new ImageIcon("resources/arrows.png"); // Replace with your image file path
+        ImageIcon image1 = new ImageIcon("resources/keyboardsSmall.png"); // Replace with your image file path
         JLabel imageLabel1 = new JLabel(image1);
         line1.add(imageLabel1, BorderLayout.WEST);
 
-        JLabel sentence1 = new JLabel("<html>  &nbsp&nbsp   Use Keboard Arrows to move your  <br> &nbsp&nbsp Spaceship </html>");
+        JLabel sentence1 = new JLabel("<html>  &nbsp&nbsp   Use Keboard keys  to move your  <br> &nbsp&nbsp Spaceship </html>");
         sentence1.setFont(new Font("Arial", Font.PLAIN, 16));
         line1.add(sentence1, BorderLayout.CENTER);
 
