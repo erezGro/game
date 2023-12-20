@@ -70,8 +70,9 @@ public class MyPeriodicLoop extends PeriodicLoop {
 		if (freezeStarStatus) {
 			Game.UI().canvas().moveToLocation("Freeze Star", randXfreeze, randYfreeze);
 		}
+		//blik timer color @ 10 last sec
 		textForTimer = TimerHandler.changeTimerParams (currentTimer,textForTimer);
-
+		//end of game if elapsedTime == Game.gameDuration
 		if (elapsedTime == Game.gameDuration) {
 			AudioPlayer.playSound("resources/audio/GameOver.wav");
 			Game.endOfGame = true;

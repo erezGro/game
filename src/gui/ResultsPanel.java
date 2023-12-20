@@ -61,6 +61,8 @@ public class ResultsPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Game.audioPlayer().stop();
+                    frame.dispose();
+                    Game.gameDuration=30;
                     OpeningPanel.showOpeningPanel();
                 } catch (Exception e1) {
                     e1.printStackTrace();

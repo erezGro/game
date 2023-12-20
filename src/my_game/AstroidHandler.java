@@ -13,7 +13,7 @@ import shapes.Shape;
 public class AstroidHandler {
     int minY = (int) (Game.CANVA_HEIGHT * 0.7);
     int maxX = (int) (Game.CANVA_WIDTH * 0.94);
-    int moveOnceIn10miliseconds = 0;
+    int moveOnceInXmiliseconds = 0;
 	private MyContent content;
 	int InitgameDuration = 30;
 	int astroidSpeed = 5000;
@@ -45,7 +45,7 @@ public class AstroidHandler {
             
     }
     public void moveAstroids(Circle astroid) {
-        int moveOnceIn10miliseconds = 0;
+        int moveOnceInXmiliseconds = 0;
 
         Game.UI().canvas().moveShape("p0", 1, 1);
         Game.UI().canvas().moveShape("p1", -1, 1);
@@ -106,16 +106,15 @@ public class AstroidHandler {
 
 			// if astroid is at the edge - we recreate it
 			redrawAstroids((Circle) currentP, currentPid);
-			moveOnceIn10miliseconds++; // will make astroid to move in correct speed
+			moveOnceInXmiliseconds++; // will make astroid to move in correct speed
 			// moving astroids by redrawing them:
 	
 			if  (((InitgameDuration - (int) elapsedTime) > 3) && (astroidSpeed>1)) {
 				astroidSpeed = ((InitgameDuration - (int) elapsedTime) * 2);
 			}
-			// freezeFactor=1;
-			if ((moveOnceIn10miliseconds >= 5*astroidSpeed)) {
+			if ((moveOnceInXmiliseconds >= 5*astroidSpeed)) {
 
-				moveOnceIn10miliseconds = 0;
+				moveOnceInXmiliseconds = 0;
 				moveAstroids((Circle) currentP);
 
 			}
