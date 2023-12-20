@@ -14,12 +14,10 @@ public class AstroidHandler {
     int minY = (int) (Game.CANVA_HEIGHT * 0.7);
     int maxX = (int) (Game.CANVA_WIDTH * 0.94);
     int moveOnceInXmiliseconds = 0;
-	private MyContent content;
 	int InitgameDuration = 30;
 	int astroidSpeed = 5000;
     public Object astroidHandler;
-//	public int minAstX = 20;
-//	public int maxAstX = maxX;
+
 
     public void redrawAstroids(Circle astroid,String currentPid) {
 
@@ -45,7 +43,6 @@ public class AstroidHandler {
             
     }
     public void moveAstroids(Circle astroid) {
-        int moveOnceInXmiliseconds = 0;
 
         Game.UI().canvas().moveShape("p0", 1, 1);
         Game.UI().canvas().moveShape("p1", -1, 1);
