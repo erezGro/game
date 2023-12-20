@@ -1,6 +1,7 @@
 package buttons;
 
 import game.Game;
+import my_game.ScoreHandler;
 
 
 public class EndButton extends GameButton {
@@ -12,6 +13,8 @@ public class EndButton extends GameButton {
 	@Override
 	public void buttonAction() {
 		super.buttonAction();
+		ScoreHandler.saveResultToDb();
+
 		Game.endGame();
 		
 

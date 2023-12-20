@@ -8,6 +8,7 @@ import my_game.SpaceShipHandler;
 import my_game.AstroidHandler;
 import my_game.GameUtils;
 import my_game.MyCharacter;
+import my_game.ScoreHandler;
 import my_game.TimerHandler;
 
 public class MyPeriodicLoop extends PeriodicLoop {
@@ -27,7 +28,7 @@ public class MyPeriodicLoop extends PeriodicLoop {
 
 	GameUtils gameUtils = new GameUtils();
 	SpaceShipHandler spaceShipHandler = new SpaceShipHandler();
-
+	ScoreHandler scoreHandler = new ScoreHandler();
 	AstroidHandler astroidHandler = new AstroidHandler();
 
 	public void setContent(MyContent content) {
@@ -76,6 +77,7 @@ public class MyPeriodicLoop extends PeriodicLoop {
 		if (elapsedTime == Game.gameDuration) {
 			AudioPlayer.playSound("resources/audio/GameOver.wav");
 			Game.endOfGame = true;
+			ScoreHandler.saveResultToDb();
 			Game.endGame();
 		}
 
